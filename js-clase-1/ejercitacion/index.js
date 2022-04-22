@@ -11,15 +11,16 @@ calculatePrice("play", 30000)
 output : "el costo de envio de una play es de 500 pesos y el precio total seria de 30500 pesos"
 *******************************************************************************/
 //Tu código acá
-const calculatePrice = (product, price) => {
+const calculatePrice = (product = undefined, price = undefined) => {
   let shippingPrice;
   let TotalPrice;
 
-  if (price > 0 && price < 2000) {
-    shippingPrice = 300;
-  } else if (price > 2000 && price <= 4000) {
-    shippingPrice = 500;
-  } else if (price > 4000) {
+  if (product === undefined || product === undefined)
+    return "Ingresar ambos parámetros";
+
+  if (price > 0 && price < 2000) shippingPrice = 300;
+  if (price > 2000 && price <= 4000) shippingPrice = 500;
+  if (price > 4000) {
     shippingPrice = 700;
   } else {
     shippingPrice = 0;
@@ -27,7 +28,7 @@ const calculatePrice = (product, price) => {
 
   TotalPrice = price + shippingPrice;
 
-  return shippingPrice !== 0
+  return shippingPrice <= 0
     ? `el costo de envío de una ${product} es de ${shippingPrice} pesos y el precio total seria de ${TotalPrice} pesos 
        `
     : "Error";
